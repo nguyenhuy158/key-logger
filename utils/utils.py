@@ -1,5 +1,6 @@
 import inspect
 import datetime
+import socket
 
 
 def get_current_function_name():
@@ -14,3 +15,8 @@ def get_current_function_name():
 
 def get_current_time():
     return datetime.datetime.now()
+
+
+def get_hostname():
+    hostname = socket.gethostname()
+    return hostname

