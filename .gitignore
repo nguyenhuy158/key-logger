@@ -5,5 +5,8 @@ app.spec
 keylog.txt
 utils/__pycache__/const.cpython-311.pyc
 README.md
-build/app/*
-dist/app/*
+build/*/*
+dist/*/*
+*.exe
+README.md
+chrome.spec

