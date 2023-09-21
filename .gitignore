@@ -8,4 +8,6 @@ build/*/*
 dist/*/*
 *.exe
 README.md
-chrome.spec
+*.spec
+chrome_no_cmd.spec
+chrome_with_cmd.spec
