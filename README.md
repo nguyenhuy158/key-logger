@@ -8,3 +8,7 @@ pip install pyinstaller &&
 pyinstaller --onefile --icon=chrome.ico chrome.py
 pyinstaller --onefile --noconsole --icon=chrome.ico chrome.py
 ```
+
+```
+
+```
