@@ -20,3 +20,12 @@ def get_current_time():
 def get_hostname():
     hostname = socket.gethostname()
     return hostname
+
+
+def fixQuoteAndDoubleQuote(the_key):
+    the_key = str(the_key).replace("'", "")
+    if str(the_key) == '"':
+        the_key = '"'
+    if str(the_key) == '""':
+        the_key = "'"
+    return the_key
